@@ -1,0 +1,44 @@
+<header>
+    <div id="right_container">
+        </button>
+        <button id="more_button" ng-click="scan.moreButton.click($event)">
+<span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+</button>
+    </div>
+
+    <div id="more_container" ng-class="{show_more_container : scan.moreContainer._show}">
+        <ul class="list-group">
+            <button class="list-group-item" ui-sref="scan({scan : {{scan.index}},page : {{$index}}})" ng-repeat="n in scan.scan.pages track by $index">{{$index}}</button>
+        </ul>
+    </div>
+
+    <div id="header_label" class="col-xs-9">
+        <label>{{scan.scan.title}} <span class="badge">{{scan.page}}</span> </label>
+    </div>
+
+    <button id="menu_button" ui-sref="scans({manga : '{{scan.manga}}'})">
+<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+</button>
+</header>
+
+<div id="container">
+    <img id="scanImage" class="pannable-image" ng-src="{{scan.scan.pages[scan.page]}}" ng-show="scan.imgLoaded" width="100%"
+        height="100%" />
+</div>
+<div id="button_container">
+    <button ui-sref="scan({manga : '{{scan.manga}}',scan : {{(scan.index*1)-1}},page : 0})" class="btn btn-info" ng-if="scan.page==0&&scan.index>0"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+</button>
+    <button class="btn btn-default" ng-hide="scan.page==0" ng-disabled="!scan.imgLoaded" ng-click="scan.previous()"><span class="glyphicon glyphicon-{{scan.imgLoaded?'arrow-left':'refresh spinning'}}" aria-hidden="true"></span>
+</button>
+    <button class="btn btn-default" ng-hide="scan.page>=scan.scan.size-1" ng-disabled="!scan.imgLoaded" ng-click="scan.next()"><span class="glyphicon glyphicon-{{scan.imgLoaded?'arrow-right':'refresh spinning'}}" aria-hidden="true"></span>
+</button>
+    <button ui-sref="scan({manga : '{{scan.manga}}',scan : {{(scan.index*1)+1}},page : 0})" class="btn btn-info" ng-if="scan.page==scan.scan.size-1&&scan.index<scan.chapterNbr-1"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+</button>
+</div>
+
+<div class="sk-folding-cube" ng-if="!scan.imgLoaded">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+</div>

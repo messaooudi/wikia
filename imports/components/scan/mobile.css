@@ -1,0 +1,33 @@
+scan #container {
+    position: fixed;
+    margin-top: 55px;
+    padding: 0px;
+    top : 0px;
+    bottom : 0px;    
+    overflow: auto;
+}
+
+scan #button_container {
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    width: 100px;
+    margin: auto;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+

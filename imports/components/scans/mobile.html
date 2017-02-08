@@ -1,0 +1,38 @@
+<header>
+    <div id="right_container">
+        </button>
+        <button id="more_button" ng-click="scans.moreButton.click($event)">
+<span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+</button>
+    </div>
+
+    <div id="more_container" ng-class="{show_more_container : scans.moreContainer._show}">
+        <ul class="list-group">
+            <button class="list-group-item" ui-sref="scan({manga : '{{scans.manga}}',scan : {{scans.titles.length-$index-1}},page : 0})" ng-repeat="n in scans.titles track by $index">{{scans.titles.length-$index}}</button>
+        </ul>
+    </div>
+
+    <div id="header_label" class="col-xs-9">
+        <label>{{scans.manga}} <span class="badge">{{scan.page}}</span> </label>
+    </div>
+
+    <button id="menu_button" ui-sref="manga({manga : scans.manga})">
+<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+</button>
+</header>
+
+<div id="container">
+    <div class="sk-folding-cube" ng-if="scans.loadingData">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+    </div>
+    <div class="search">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search ...">
+        </div>
+    </div>
+    <button ui-sref="scan({manga : '{{scans.manga}}',scan : {{$index}},page : 0})" type="button" class="btn btn-default" ng-repeat="title in scans.titles | filter : searchQuery">{{title}}</button>
+</div>
